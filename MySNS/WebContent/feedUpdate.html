@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>MySNS</title>
+<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/core.css">
+<style type="text/css">
+.border {
+	float: left;
+	width: 100%;
+	padding: 12px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+textarea {
+	float: left;
+	width: 100%;
+	height: 7em;
+	line-height: 1.4em;
+	border: none;
+	outline: none;
+}
+.camera {
+	float: right;
+	width: 50px; height: 36px; 
+	background-size: 36px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-image: url(images/ico_camera_add.png);
+	cursor: pointer;
+}
+.img-pane {
+	float: left;
+	width: 100%;
+	padding: 10px 4px; 
+	box-sizing: border-box;
+}
+.img-pane .grid-33 {
+	float: left;
+	width: 33.33%;
+	box-sizing : border-box;	
+	padding: 1px;
+}
+.img-pane .icon-box {
+	position: relative;
+}
+.img-pane .icon-box .icon {
+	z-index: 10;
+    position: absolute;
+    right: 8px; top: 8px;
+    width: 16px; height: 16px;
+    cursor: pointer;
+}
+.flex-embed {
+	position: relative;
+	overflow: hidden;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.flex-embed:before {
+	content: "";
+	display: block;
+	width: 100%;
+	padding-bottom: 75%;
+}
+</style>
+</head>
+<body>
+<div class="page-hdr">MySNS</div>
+<div class="page-body">
+	<div class="section mtop-20 pad-16">
+		<div class="border">
+			<textarea id="desc" placeholder="내용을 입력해주세요."></textarea>
+		</div>
+		<div class="img-pane"></div>
+		<div class="section"><div class="camera" onclick="ImageUploader.add()"></div></div>
+		<input type="submit" class="mtop-20" value="작성완료" onclick="done()">
+	</div>
+</div>
+</body>
+</html>
+
+<script src="js/jquery-1.12.0.min.js"></script>
+<script src="js/core.js"></script>
+<script src="js/image.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	Page.init(start,"feedUpdate.html");
+});
+
+var pagectx={};
+var pageNo={};
+function start(usrobj, param) {
+	ImageUploader.init(".img-pane");
+	pagectx.usrobj=usrobj;
+	pageNo=param.no;
+}
+
+function done() {
+	var desc = $("#desc").val().trim();
+	if (desc == "" || desc.length < 10) {
+		alert("내용을 10글자 이상 작성해 주세요.");
+		$("#desc").focus();
+		return;
+	}
+	var feed = {
+		author : pagectx.usrobj,
+		//images : ImageUploader.get(),
+		desc: desc,
+	};
+	var params="no="+pageNo+"&feed="+JSON.stringify(feed);
+	AJAX.call("jsp/feedUpdate.jsp",params,function(data){
+		alert("글이 수정되었습니다.");
+	});
+	window.location.href="main.html";
+}
+</script>

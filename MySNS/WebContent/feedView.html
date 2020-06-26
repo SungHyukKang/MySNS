@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>MySNS</title>
+<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/common.css">
+<style type="text/css">
+.section{
+	float:left;
+	width:100%;
+	padding:1px;
+	box-sizing:border-box;
+}
+
+</style>
+</head>
+<body>
+<div id="header-area" class="section">
+	<h3>MySNS</h3>
+</div>
+<div id="contents-area" class="section"></div>
+</body>
+</html>
+<script src="js/core.js"></script>
+<script src="js/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	Page.init(start,"feedView.html");
+});
+
+var pagectx={};
+ 	
+function start(usrobj,feed){
+	pagectx.usrobj=usrobj;
+	var str=getFeedStr(feed);
+	$("#contents-area").html(str);
+}
+
+function getFeedStr(feed){
+	var str="";
+	str += "<div class='feed'>";
+	str += "<div class='author'>";
+	str += "<div class='photo'></div>";
+	str += "<div class='name'>" + feed.author.name + "</div>";
+	str += "</div>";
+	
+	str += "<p>" + feed.desc + "</p>";
+	if(feed.images!=null){
+			for(var i = 0;i<feed.images.length;i++){
+				str += "<div class='section'>";
+				str += "<div class='image' style='background-image: url(\"" + feed.images[i] + "\")'></div>";
+				str += "</div>";
+			}
+		}
+	str += "</div>";
+	return str;
+}
+
+function addFeed(feed){
+	window.location.href="write.html";
+}
+
+function logout(){
+	var res=confirm("로그아웃하시겠습니까?");
+	if(res == true)
+	AJAX.call("jsp/logout.jsp",null,function(data){
+		window.location.href="login.html";
+	});
+}
+
+
+function showFeed(feedNo) {
+	var selfeed=getFeed(feedNo);
+	if(selfeed==null){
+		alert("선택된 피드가 없습니다");
+		return;
+	}
+	Page.go("feedView.html",selfeed);
+} 
+
+function getFeed(feedNo){
+	for(var i =0; i<pagectx.feeds.length;i++){
+		if(pagectx.feeds[i].no==feedNo){
+			return pagectx.feeds[i];
+		}
+	}
+	return null;
+}
+
+function updateFeed(feedNo){
+	var selfeed=getFeed(feedNo);
+	if(selfeed==null){
+		alert("선택된 피드가 없습니다");
+		return;
+	}
+	Page.go("feedUpdate.html",selfeed);
+}
+
+function deleteFeed(feedNo){
+	var res=confirm("선택된 글을 삭제하시겠습니까?");
+	if(res == true){
+		var params="no="+feedNo;
+		AJAX.call("jsp/feedDelete.jsp",params,function(data){
+		window.location.reload();
+		});
+	}
+}
+
+var feedList = [
+   	{
+   		author: {photo: "", name: "H. Kim", id: "kim@abc.com"},
+   		images: ["images/Chrysanthemum.jpg", "images/Hydrangeas.jpg"],
+   		desc: "Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.",
+   	},
+   	{
+   		author: {photo: "", name: "J. Lee", id: "lee@abc.com"},
+   		images: ["images/Koala.jpg", "images/Penguins.jpg", "images/Lighthouse.jpg"],
+   		desc: "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+   	},
+   	{
+   		author: {photo: "", name: "Y. Cho", id: "cho@abc.com"},
+   		images: ["images/Desert.jpg"],
+   		desc: "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+   	},
+];
+
+</script>

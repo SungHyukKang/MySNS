@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/core.css">
+<title>MySNS</title>
+<style>
+.desc {
+	float: left;
+	width: 100%;
+	color: #888;
+	font-size: 0.9em;
+}
+.button {
+	float: left;
+	width: 100%;
+	line-height: 40px;
+	text-align: center;
+	font-size: 1.0em;
+	background-color: white;
+	color: #35D;
+	border: 1px solid #35D;
+	border-radius: 4px;
+}
+</style>
+</head>
+<body>
+	<div class="page-hdr">MySNS</div>
+	<div class="page-body">
+		<div class="section pad-24 mtop-30">
+			<input id="id" type="text" placeholder="아이디(이메일주소)">
+			<input id="ps" type="password" class="mtop-10" placeholder="패스워드">
+			<input id="ps2" type="password" class="mtop-10" placeholder="패스워드 (확인)">
+			<input id="name" type="text" class="mtop-10" placeholder="이름">
+			<input id="nick" type="text" class="mtop-10" placeholder="닉네임">
+			<input type="submit" class="mtop-20" value="회원가입" onclick="signup()" >
+		</div>
+		<div class="section pad-24 mtop-30">
+			<div class="desc mbot-20">	
+				회원 가입시 MySNS의 약관에 동의하신 것으로 간주합니다.
+			</div>
+			<div class="button">약관 보기</div>
+		</div>
+	</div>
+	<div class="page-footer">Copyright: mysns.com, 2020</div>
+</body>
+</html>
+
+<script src="js/jquery-1.12.0.min.js"></script>
+<script src="js/core.js"></script>
+<script>
+function signup(){
+	var id = $("#id").val().trim();
+	if(id == ""){
+		alert("아이디를 입력해주세요.");
+		$("#id").focus();
+		return;
+	}
+	var ps=$("#ps").val().trim();
+	if(ps == ""){
+		alert("패스워드를 입력해주세요");
+		$("#ps").focus();
+		return;
+	}
+	var ps2=$("#ps2").val().trim();
+	if(ps2 != ps){
+		alert("입력한 두 개의 패스워드가 다릅니다.");
+		$("#ps2").focus();
+		return;
+	}
+	var name=$("#name").val().trim();
+	if(name==""){
+		alert("이름을 입력해주세요.");
+		$("#name").focus();
+		return;
+	}
+	
+	var nick=$("#nick").val().trim();
+	if(nick==""){
+		alert("닉네임을 입력해주세요.");
+		$("#nick").focus();
+		return;
+	}
+	
+	var url="jsp/signup.jsp?id="+id+"&ps="+ps+"&nick="+nick+"&name="+name;
+	AJAX.call(url,null,function(data){
+		if(data == "OK"){
+		alert("회원가입이 완료되었습니다.");
+		window.location.href="login.html";
+		}
+		else if(data=="ER"){
+			alert("에러가 발생하였습니다.");
+		}
+		else{
+			alert("이미 가입한 회원입니다.")
+			window.location.href="login.html";
+		}	
+		
+	});
+	
+	
+}
+</script>

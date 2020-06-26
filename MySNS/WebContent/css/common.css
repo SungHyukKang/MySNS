@@ -1,0 +1,154 @@
+* { }
+body {
+	margin: 0;
+}
+.section {
+	float: left;
+	width: 100%;
+} 
+#header-area {
+	background-color: #36D;
+}
+#header-area h3 {
+	margin: 12px 0px;
+	text-align: center;
+	color: white;
+}
+#menu-area ul {
+	float: left;
+	width: 100%;
+	margin: 0;
+	padding: 12px 10px;
+	box-sizing: border-box;
+	background-color: #f9f9f9;
+}
+#menu-area li {
+	float: left;
+	padding: 0px 10px;
+	list-style: none;
+	font-size: 0.95em;
+}
+#contents-area p {
+	float: left;
+	margin: 20px 0px 30px 0px;
+	padding: 0px 16px;
+	box-sizing: border-box;
+
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	display: -webkit-box;
+	-webkit-line-clamp: 4; 		/* line number */	
+	-webkit-box-orient: vertical; 
+	word-wrap: break-word;
+}
+#footer-area {
+	float: left;
+	width: 100%;
+	margin-top: 30px;
+	line-height: 50px;
+	background-color: #EEE;
+	text-align: center;
+	color: #555;
+	font-size: 0.8em;
+	border-top: 1px solid #eee;
+}
+.feed {
+	float: left;
+	width: 100%;
+	padding-top: 10px;
+	background-color: white;
+	border-top: 1px solid #f4f4f4;
+}
+.image {
+	position: relative;
+	overflow: hidden;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.image:before {
+	content: "";
+	display: block;
+	width: 100%;
+	padding-bottom: 75%;
+}
+.image .darker {
+	z-index: 5;
+	position: absolute;
+	left: 0; top: 0; width: 100%; height: 100%;
+	opacity: 0.7;
+	background-image: linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 100%);
+}
+.image .text {
+	z-index: 5;
+	position: absolute;
+	left: 10px; bottom: 10px;
+	color: white;
+	font-size: 0.9em;
+}
+.grid-100 {
+	float: left;
+	width: 100%;
+	padding: 1px;
+	box-sizing: border-box;	
+}
+.grid-66 {
+	float: left;
+	width: 66.66%;
+	padding: 1px;
+	box-sizing: border-box;	
+}
+.grid-50 {
+	float: left;
+	width: 50%;
+	padding: 1px;
+	box-sizing: border-box;	
+}
+.grid-33 {
+	float: left;
+	width: 33.33%;
+	padding: 1px;
+	box-sizing: border-box;	
+}
+.author {
+	position : relative;
+	float: left;
+	width: 100%;
+	padding: 10px 16px;
+	box-sizing: border-box;
+	box-sizing: border-box;	
+}
+.author .photo {
+	float: left;
+	padding: 5px;
+	width: 30px; height: 30px;
+	overflow: hidden;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url("../images/contact.jpg");
+	border: 1px solid #ddd;
+	border-radius: 30px;
+}
+.author .name {
+	float: left;
+	margin-left: 10px;
+	line-height: 42px;
+	font-weight: bold;
+}
+.author .btn-del {
+	position : absolute;
+	right:16px; top: 50%;
+	transform: translateY(-50%);
+	width: 20px; height: 20px;
+	overflow: hidden;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url("../images/ico_delete2.png");
+}
+.author .btn-del.pencil {
+	right: 44px;
+	width: 16px; height: 16px;
+	background-image: url("../images/ico_pencil.png");
+}

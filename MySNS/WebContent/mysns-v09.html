@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>MySNS</title>
+<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+<link rel="stylesheet" href="css/common.css">
+<style type="text/css">
+	/* define page-dependent styles here */
+</style>
+</head>
+<body>
+<div id="header-area" class="section">
+	<h3>MySNS</h3>
+</div>
+<div id="menu-area" class="section">
+	<ul>
+		<li>Messages</li>
+		<li>Friends</li>
+		<li>About</li>
+	</ul>
+</div>
+<div id="contents-area" class="section">
+</div>
+<div id="footer-area" class="section">
+	Copyright: MySNS.com, 2019
+</div>
+</body>
+</html>
+
+<script src="js/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	var str = "";
+	for (var i=0; i<feedList.length; i++) {
+		var feed = feedList[i];
+
+		str += "<div class='feed'>";
+		str += "<div class='author'>";
+		str += "<div class='photo'></div>";
+		str += "<div class='name'>" + feed.author.name + "</div>";
+		str += "</div>";
+
+		if (feed.images.length == 1) {
+			str += "<div class='section'>";
+			str += "<div class='image' style='background-image: url(\"" + feed.images[0] + "\")'></div>";
+			str += "</div>";
+		}
+		else if (feed.images.length == 2) {
+			str += "<div class='grid-50'>";
+			str += "<div class='image' style='background-image: url(\"" + feed.images[0] + "\")'></div>";
+			str += "</div>";
+			str += "<div class='grid-50'>";
+			str += "<div class='image' style='background-image: url(\"" + feed.images[1] + "\")'></div>";
+			str += "</div>";
+		}
+		else if (feed.images.length == 3) {
+			// TODO something here ...
+		}
+
+		str += "<p>" + feed.desc + "</p>";
+		str += "</div>";
+	}
+	$("#contents-area").html(str);
+});
+
+function showFeed(index) {
+	window.location.href = "feed-" + index + ".html";
+}
+
+var feedList = [
+   	{
+   		author: {photo: "", name: "H. Kim", id: "kim@abc.com"},
+   		images: ["images/Chrysanthemum.jpg", "images/Hydrangeas.jpg"],
+   		desc: "Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.",
+   	},
+   	{
+   		author: {photo: "", name: "J. Lee", id: "lee@abc.com"},
+   		images: ["images/Koala.jpg", "images/Penguins.jpg", "images/Lighthouse.jpg"],
+   		desc: "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+   	},
+   	{
+   		author: {photo: "", name: "Y. Cho", id: "cho@abc.com"},
+   		images: ["images/Desert.jpg"],
+   		desc: "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
+   	},
+];
+</script>

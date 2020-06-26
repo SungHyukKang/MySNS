@@ -33,6 +33,7 @@ public class UserDAO {
 			int X = st.executeUpdate();
 			if(X==1) {
 				code="OK";
+				return code;
 			}else
 				code ="ER";
 			}

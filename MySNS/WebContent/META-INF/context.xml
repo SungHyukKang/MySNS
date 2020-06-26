@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <Resource name="jdbc/mysns" 
+    <Resource name="jdbc/testcase" 
     	auth="Container"
     	type="javax.sql.DataSource" 
     	driverClassName="com.mysql.jdbc.Driver"
-    	url="jdbc:mysql://localhost:3306/mysns?serverTimezone=UTC" 
+    	url="jdbc:mysql://localhost:3306/testcase?serverTimezone=UTC" 
     	username="root" 
     	password="password"
     	maxTotal="16" 

@@ -14,7 +14,7 @@ public class ConnectionPool {
 	public static ConnectionPool getInstance() throws NamingException {
 		if (_instance == null) {
 			_instance = new ConnectionPool();
-			_ds = (DataSource) (new InitialContext()).lookup("java:comp/env/jdbc/mysns");
+			_ds = (DataSource) (new InitialContext()).lookup("java:comp/env/jdbc/testcase");
 		}
 		return _instance;
 	}

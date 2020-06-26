@@ -27,16 +27,16 @@ var Page = {
 
 var Session = {
 		set: function(name ,val){
-			sessionStorage["mysns>"+ name]= JSON.stringify(val);
+			sessionStorage["testcase>"+ name]= JSON.stringify(val);
 		},
 		
 		get: function(name){
-			var str = sessionStorage["mysns>" + name];
+			var str = sessionStorage["testcase>" + name];
 			return (str==null || str=="null") ? null : JSON.parse(str);
 			
 		},
 		clear: function(name){
-			sessionStorage["mysns>"+name] = null;
+			sessionStorage["testcase>"+name] = null;
 		},
 };
 

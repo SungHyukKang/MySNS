@@ -1,7 +1,7 @@
-CREATE DATABASE IF NOT EXISTS mysns
+CREATE DATABASE IF NOT EXISTS testcase
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-use mysns;
+use testcase;
 
 Create table if  not exists user(
 	id varchar(32) primary key comment "email",

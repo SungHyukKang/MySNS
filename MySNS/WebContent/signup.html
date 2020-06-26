@@ -85,17 +85,10 @@ function signup(){
 	var url="jsp/signup.jsp?id="+id+"&ps="+ps+"&nick="+nick+"&name="+name;
 	AJAX.call(url,null,function(data){
 		if(data == "OK"){
+			alert("OK");
+		}
 		alert("회원가입이 완료되었습니다.");
 		window.location.href="login.html";
-		}
-		else if(data=="ER"){
-			alert("에러가 발생하였습니다.");
-		}
-		else{
-			alert("이미 가입한 회원입니다.")
-			window.location.href="login.html";
-		}	
-		
 	});
 	
 	
